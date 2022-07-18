@@ -1,0 +1,8 @@
+$c-primary: #5ece7b;
+$c-black: #1d1f22;
+$c-white: #fff;
+$c-text: #1d1f22;
+
+$transition: all 400ms ease;
+$filter-to-c-primary: invert(100%) sepia(22%) saturate(4973%) hue-rotate(46deg)
+  brightness(88%) contrast(87%);

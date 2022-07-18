@@ -1,0 +1,83 @@
+@import "../../variables.scss";
+
+header {
+  margin-top: 1.5rem;
+  height: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: 100%;
+  align-items: center;
+
+  nav {
+    float: left;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+
+    a {
+      font-weight: 400;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0.25rem 1rem 0;
+      height: 100%;
+      cursor: pointer;
+      color: $c-text;
+      transition: $transition;
+      border-bottom: 2px solid $c-white;
+
+      &:hover {
+        color: $c-primary;
+        border-color: $c-primary;
+      }
+    }
+  }
+
+  .logo {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menus {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
+
+    .currency-icon {
+      height: 100%;
+      padding-right: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      cursor: pointer;
+      transition: $transition;
+      user-select: none;
+
+      span {
+        font-weight: 500;
+        font-size: 1.125rem;
+      }
+
+      &:hover {
+        filter: $filter-to-c-primary;
+      }
+    }
+
+    .cart-icon {
+      transition: $transition;
+      padding-left: 0.75rem;
+      height: 100%;
+      align-items: center;
+      display: flex;
+      cursor: pointer;
+      transition: $transition;
+
+      &:hover {
+        filter: $filter-to-c-primary;
+      }
+    }
+  }
+}
