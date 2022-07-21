@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { fetchCurrencyOptions } from "../api";
 
 // =====================
 // === INITIAL STATE ===
@@ -9,6 +10,7 @@ const initialState = {
     label: "USD",
     symbol: "$",
   },
+  currencyOptions: null,
 };
 
 // ================
@@ -24,11 +26,21 @@ const currencySlice = createSlice({
     dismissCurrencyMenu: (state) => {
       state.isCurrencyMenuOpen = false;
     },
+    setCurrentCurrency: (state, { payload }) => {
+      state.currentCurrency = payload;
+    },
+    setCurrencyOptions: (state, { payload }) => {
+      state.currencyOptions = payload;
+    },
   },
 });
 
-export const { toggleCurrencyMenu, dismissCurrencyMenu } =
-  currencySlice.actions;
+export const {
+  toggleCurrencyMenu,
+  dismissCurrencyMenu,
+  setCurrencyOptions,
+  setCurrentCurrency,
+} = currencySlice.actions;
 
 // =================
 // === SELECTORS ===
@@ -42,6 +54,21 @@ export const selectCurrentCurrency = createSelector(
   [selectCurrencyStore],
   (currency) => currency.currentCurrency
 );
+export const selectCurrencyOptions = createSelector(
+  [selectCurrencyStore],
+  (currency) => currency.currencyOptions
+);
+
+// =============
+// === THUNK ===
+
+export const getCurrencyOptionsAsync = () => {
+  return (dispatch) => {
+    fetchCurrencyOptions().then((res) => {
+      dispatch(setCurrencyOptions(res));
+    });
+  };
+};
 
 // ======================
 // === DEFAULT EXPORT ===
