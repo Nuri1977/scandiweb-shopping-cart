@@ -9,7 +9,7 @@ import NotFound from "./pages/notFound/NotFound";
 class App extends React.Component {
   render() {
     return (
-      <div id="App">
+      <div id="page-container">
           <Header />
           <Routes>
             <Route path="*" element={<NotFound />} />

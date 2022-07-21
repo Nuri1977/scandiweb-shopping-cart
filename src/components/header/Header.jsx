@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { Link } from "react-router-dom";
 
 import {
   selectIsCartMenuOpen,
@@ -12,7 +13,14 @@ import {
   selectIsCurrencyMenuOpen,
   toggleCurrencyMenu,
   dismissCurrencyMenu,
+  selectCurrentCurrency,
 } from "../../redux/currency.reducer";
+
+import {
+  getCategoryNamesAsync,
+  selectCategoryNames,
+} from "../../redux/shop.reducer";
+
 import CurrencyMenu from "../currencyMenu/CurrencyMenu";
 
 import { ReactComponent as CartSVG } from "../../assets/empty-cart.svg";
@@ -20,8 +28,6 @@ import { ReactComponent as LogoSVG } from "../../assets/logo.svg";
 import { ReactComponent as ArrowSVG } from "../../assets/down-arrow.svg";
 
 import "./Header.scss";
-
-import { Link } from "react-router-dom";
 
 class Header extends React.Component {
   dismissAllMenus = () => {
@@ -31,6 +37,7 @@ class Header extends React.Component {
 
   componentDidMount() {
     window.addEventListener("click", this.dismissAllMenus);
+    this.props.getCategoryNames();
   }
 
   componentWillUnmount() {
@@ -39,7 +46,7 @@ class Header extends React.Component {
 
   render() {
     const { isCurrencyMenuOpen, toggleCurrencyMenu, dismissCurrencyMenu } =
-    this.props;
+      this.props;
     const { isCartMenuOpen, toggleCartMenu, dismissCartMenu } = this.props;
 
     const handleOnClickCurrencyIcon = (e) => {
@@ -56,12 +63,18 @@ class Header extends React.Component {
       toggleCartMenu();
     };
 
+    const { categoryNames, currentCurrency } = this.props;
+
     return (
       <header>
         <nav>
-          <Link to="/">WOMEN</Link>
-          <Link to="/">MEN</Link>
-          <Link to="/">KIDS</Link>
+          {categoryNames
+              ? categoryNames.map(({ name }) => (
+                  <Link to={name} key={name}>
+                    {name}
+                  </Link>
+                ))
+              : null}
         </nav>
 
         <div className="logo">
@@ -70,7 +83,7 @@ class Header extends React.Component {
 
         <div className="menus">
           <div className="currency-icon" onClick={handleOnClickCurrencyIcon}>
-            <span>$</span>
+          <span>{currentCurrency.symbol}</span>
             <ArrowSVG />
           </div>
           <div className="cart-icon" onClick={handleOnClickCartIcon}>
@@ -86,6 +99,8 @@ class Header extends React.Component {
 const mapStateToProps = createStructuredSelector({
   isCurrencyMenuOpen: selectIsCurrencyMenuOpen,
   isCartMenuOpen: selectIsCartMenuOpen,
+  categoryNames: selectCategoryNames,
+  currentCurrency: selectCurrentCurrency,
 });
 
 const mapDispatchToState = (dispatch) => ({
@@ -93,6 +108,7 @@ const mapDispatchToState = (dispatch) => ({
   dismissCartMenu: () => dispatch(dismissCartMenu()),
   toggleCurrencyMenu: () => dispatch(toggleCurrencyMenu()),
   dismissCurrencyMenu: () => dispatch(dismissCurrencyMenu()),
+  getCategoryNames: () => dispatch(getCategoryNamesAsync()),
 });
 
 export default connect(mapStateToProps, mapDispatchToState)(Header);

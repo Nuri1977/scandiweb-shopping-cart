@@ -26,6 +26,14 @@ header {
       &:hover {
         background-color: $c-primary;
       }
+
+      &.active {
+        color: $c-primary;
+
+        &:hover {
+          color: $c-white;
+        }
+      }
     }
   }
 }
