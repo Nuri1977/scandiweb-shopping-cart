@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { Link } from "react-router-dom";
 
 import {
   selectIsCartMenuOpen,
@@ -22,6 +21,7 @@ import {
 } from "../../redux/shop.reducer";
 
 import CurrencyMenu from "../currencyMenu/CurrencyMenu";
+import CustomLink from "../customLink/CustomLink";
 
 import { ReactComponent as CartSVG } from "../../assets/empty-cart.svg";
 import { ReactComponent as LogoSVG } from "../../assets/logo.svg";
@@ -70,9 +70,9 @@ class Header extends React.Component {
         <nav>
           {categoryNames
               ? categoryNames.map(({ name }) => (
-                  <Link to={name} key={name}>
+                  <CustomLink to={name} key={name}>
                     {name}
-                  </Link>
+                  </CustomLink>
                 ))
               : null}
         </nav>
