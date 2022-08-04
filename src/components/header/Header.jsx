@@ -103,7 +103,7 @@ const mapStateToProps = createStructuredSelector({
   currentCurrency: selectCurrentCurrency,
 });
 
-const mapDispatchToState = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   toggleCartMenu: () => dispatch(toggleCartMenu()),
   dismissCartMenu: () => dispatch(dismissCartMenu()),
   toggleCurrencyMenu: () => dispatch(toggleCurrencyMenu()),
@@ -111,4 +111,4 @@ const mapDispatchToState = (dispatch) => ({
   getCategoryNames: () => dispatch(getCategoryNamesAsync()),
 });
 
-export default connect(mapStateToProps, mapDispatchToState)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

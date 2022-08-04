@@ -50,10 +50,10 @@ const mapStateToProps = createStructuredSelector({
   currentCurrency: selectCurrentCurrency,
 });
 
-const mapDispatchToState = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   getCurrencyOptions: () => dispatch(getCurrencyOptionsAsync()),
   setCurrentCurrency: (currency) => dispatch(setCurrentCurrency(currency)),
 });
 
 
-export default connect(mapStateToProps, mapDispatchToState)(CurrencyMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencyMenu);
