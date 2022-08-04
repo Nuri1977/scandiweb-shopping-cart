@@ -3,14 +3,15 @@
 header {
   .currency-menu {
     position: absolute;
-    right: 1.875rem;
-    top: 4rem;
+    right: 0;
+    top: 2.5rem;
     width: 7.125rem;
     background-color: $c-white;
     box-shadow: 0 0.25rem 0.25rem rgba($color: #000, $alpha: 0.25);
     margin: 0.65rem 0;
     display: flex;
     flex-direction: column;
+    z-index: 40;
 
     .item {
       padding: 0.65rem 1.25rem;
@@ -22,18 +23,19 @@ header {
       justify-content: space-between;
       user-select: none;
       cursor: pointer;
-
       &:hover {
         background-color: $c-primary;
       }
-
       &.active {
         color: $c-primary;
-
         &:hover {
           color: $c-white;
         }
       }
+    }
+
+    @media screen and (min-width: 1024px) {
+      right: -1.35rem;
     }
   }
 }
