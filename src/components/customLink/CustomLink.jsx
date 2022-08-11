@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { withLocation } from "../../helpers/HocNavigation";
+import { withLocation } from "../../HOC";
 
 class NavLink extends React.Component {
   render() {
