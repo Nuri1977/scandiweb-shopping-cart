@@ -103,6 +103,13 @@
       color: $c-primary;
       background-color: $c-white;
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      color: #888;
+      background-color: $c-white;
+      border-color: #888;
+    }
   }
 
   .description {

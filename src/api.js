@@ -2,7 +2,9 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 
 const apiClient = new ApolloClient({
   uri: "http://localhost:4000",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename: false,
+  }),
 });
 
 const CATEGORY_NAMES_QUERY = gql`
