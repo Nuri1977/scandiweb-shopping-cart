@@ -1,7 +1,9 @@
 import React, { lazy } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-import Category from "./pages/category/Category";
 
+
+const CategoryPage = lazy(() => import("./pages/category/Category"));
+const ProductPage = lazy(() => import("./pages/product/Product"));
 const CheckoutPage = lazy(() => import("./pages/checkout/Checkout"));
 const NotFoundPage = lazy(() => import("./pages/notFound/NotFound"));
 
@@ -19,9 +21,10 @@ class AppRoutes extends React.Component {
           <Route
             key={name}
             path={`/${name}`}
-            element={<Category categoryName={name} />}
+            element={<CategoryPage categoryName={name} />}
           />
         ))}
+        <Route exact path="/product/:productId" element={<ProductPage />} />
         <Route exact path="/checkout" element={<CheckoutPage />} />
         <Route exact path="/*" element={<NotFoundPage />} />
       </Routes>

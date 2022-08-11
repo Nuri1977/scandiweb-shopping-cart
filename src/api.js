@@ -60,4 +60,41 @@ export const fetchCurrencyOptions = async () => {
   return res.data.currencies;
 };
 
+const PRODUCT_INFO_QUERY = gql`
+  query Product($id: String!) {
+    product(id: $id) {
+      id
+      name
+      brand
+      inStock
+      gallery
+      description
+      prices {
+        amount
+        currency {
+          label
+          symbol
+        }
+      }
+      attributes {
+        id
+        name
+        type
+        items {
+          id
+          value
+          displayValue
+        }
+      }
+    }
+  }
+`;
+
+export const fetchProductInfo = async (productId) => {
+  return apiClient.query({
+    query: PRODUCT_INFO_QUERY,
+    variables: { id: productId },
+  });
+};
+
 export default apiClient;
