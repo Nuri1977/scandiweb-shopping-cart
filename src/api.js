@@ -6,15 +6,45 @@ const apiClient = new ApolloClient({
 });
 
 const CATEGORY_NAMES_QUERY = gql`
-  query {
+  query CategoryNames {
     categories {
       name
     }
   }
-`;
+  `;
+
 export const fetchCategoryNames = async () => {
   const res = await apiClient.query({ query: CATEGORY_NAMES_QUERY });
   return res.data.categories;
+};
+
+const CATEGORY_PRODUCTS_QUERY = gql`
+  query CategoryProducts($title: String!) {
+    category(input: { title: $title }) {
+      products {
+        id
+        name
+        brand
+        inStock
+        gallery
+        prices {
+          amount
+          currency {
+            label
+            symbol
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const fetchCategoryProducts = async (categoryName) => {
+  const res = await apiClient.query({
+    query: CATEGORY_PRODUCTS_QUERY,
+    variables: { title: categoryName },
+  });
+  return res.data.category.products;
 };
 
 const CURRENCY_OPTIONS_QUERY = gql`

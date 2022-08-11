@@ -1,24 +1,49 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { Suspense } from "react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import "./App.scss";
+import Spinner from "./components/spinner/Spinner";
 import Header from "./components/header/Header";
-import Home from "./pages/home/Home";
-import Checkout from "./pages/checkout/Checkout";
-import NotFound from "./pages/notFound/NotFound";
+import AppRoutes from "./routes";
+
+import {
+  getCategoryNamesAsync,
+  selectCategoryNames,
+  selectErrorMsg,
+  selectIsLoading,
+} from "./redux/shop.reducer";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.fetchCategoryNames();
+  }
+
   render() {
+    const { categoryNames, isLoading, errorMsg } = this.props;
+
     return (
       <div id="page-container">
-          <Header />
-          <Routes>
-            <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
+        <Header />
+        {/* TODO: create error boundary */}
+        {!isLoading && !errorMsg && categoryNames ? (
+          <Suspense fallback={<Spinner />}>
+            <AppRoutes categoryNames={categoryNames} />
+          </Suspense>
+        ) : null}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  categoryNames: selectCategoryNames,
+  isLoading: selectIsLoading,
+  errorMsg: selectErrorMsg,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchCategoryNames: () => dispatch(getCategoryNamesAsync()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
