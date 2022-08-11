@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# SCANDIWEB STORE
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- This is a scandiweb assessment test. This project is an e-commerce web app that allows users shop for some of their favorite items.
 
-## Available Scripts
+Product Listing page                             |  Product Description page
+:---------------------------------------:|:---------------------------------------:
+![Capture1](https://user-images.githubusercontent.com/73607512/157762535-cd465822-e83e-4add-bc1e-2acecfd06ced.PNG) | ![Capture2](https://user-images.githubusercontent.com/73607512/157762542-ddb6d61d-000d-4df2-9988-daaa6ecdcbe7.PNG)
 
-In the project directory, you can run:
+MiniCart view                            |   Cart page
+:---------------------------------------:|:---------------------------------------:
+![Capture3](https://user-images.githubusercontent.com/73607512/157762551-fdc063ae-1267-490a-a732-cf8532993c53.PNG) |  ![Capture4](https://user-images.githubusercontent.com/73607512/157762555-323a3c0a-a5c0-4d60-86ce-7ad9471ed7c4.PNG)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# BUILT WITH
+- HTML
+- CSS
+- JAVASCRIPT
+- REACT
+- REDUX
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# FEATURES
 
-### `npm test`
+- This app consists of 3 pages and are as follows
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- PRODUCT LIST PAGE (PLP)
+- PRODUCT DESCRIPTION PAGE (PDP)
+- CART PAGE AND MINI CART
 
-### `npm run build`
+- Users can add/remove products and change their amounts in cart - on the cart page itself, PLP and PDP should be provided.
+- For products that have various options (attributes) - the options should be selected.
+- The selected options of added to cart products is visible in cart overlay and in cart page
+- Users can filter products by category name for all of the categories from BE
+- Users can change the currency of the store to one of the available currencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Running this project locally
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- To run this project locally, please follow these instructions:
+ - Click on this [link](https://github.com/scandiweb/junior-react-endpoint) for instructions on how to run the backend server for thi project
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ - Clone this [repo](https://github.com/mckent05/scandiweb-assessment.git)
+     `git clone https://github.com/Nuri1977/scandiweb-shopping-cart `
+ - Change directory into cloned folder
+   `cd scandiweb-shopping-cart`
+ - Install project dependencies
+   `npm install`
+- Run Project
+    `npm start`
+- The project will start up in your localhost server
 
-### `npm run eject`
+## Author
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+👤 **Nuri Lacka**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- GitHub: [@Nuri1977](https://github.com/Nuri1977)
+- Twitter: [@Lackanuri](https://twitter.com/LackaNuri)
+- LinkedIn: [@nurilacka](https://www.linkedin.com/in/nuri-lacka-7141b01ba/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🤝 Contributing
 
-## Learn More
+Contributions, issues, and feature requests are welcome!
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Feel free to check the [issues page](../../issues/).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Show your support
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Give a ⭐️ if you like this project!
