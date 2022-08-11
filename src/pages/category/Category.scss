@@ -16,17 +16,17 @@
     column-gap: 0;
     row-gap: 1.5rem;
 
-    @media screen and(min-width: 640px) {
+    @include sm {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 1rem;
     }
 
-    @media screen and(min-width: 768px) {
+    @include md {
       grid-template-columns: repeat(3, 1fr);
       row-gap: 3.5rem;
     }
 
-    @media screen and(min-width: 1024px) {
+    @include lg {
       column-gap: 2.5rem;
     }
   }

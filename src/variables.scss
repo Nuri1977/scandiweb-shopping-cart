@@ -1,3 +1,6 @@
+// =====================
+// === VARIABLES ===
+
 $c-primary: #5ece7b;
 $c-black: #1d1f22;
 $c-white: #fff;
@@ -6,3 +9,41 @@ $c-text: #1d1f22;
 $transition: all 400ms ease;
 $filter-to-c-primary: invert(100%) sepia(22%) saturate(4973%) hue-rotate(46deg)
   brightness(88%) contrast(87%);
+
+// =====================
+// === MEDIA QUERIES ===
+$sm-width: 640px;
+$md-width: 768px;
+$lg-width: 1024px;
+$xl-width: 1280px;
+$xx-width: 1440px;
+
+@mixin sm {
+  @media (min-width: #{$sm-width}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$md-width}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$lg-width}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$xl-width}) {
+    @content;
+  }
+}
+
+@mixin xx {
+  @media (min-width: #{$xx-width}) {
+    @content;
+  }
+}

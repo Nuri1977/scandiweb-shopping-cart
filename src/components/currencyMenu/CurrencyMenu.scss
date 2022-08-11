@@ -34,7 +34,7 @@ header {
       }
     }
 
-    @media screen and (min-width: 1024px) {
+    @include lg {
       right: -1.35rem;
     }
   }

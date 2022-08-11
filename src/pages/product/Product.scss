@@ -4,21 +4,36 @@
   margin-top: 6rem;
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  color: $c-text;
+
+  @include lg {
+    flex-direction: row;
+  }
 
   .images {
-    flex-basis: 60%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     gap: 5%;
+
+    @include lg {
+      flex-direction: row;
+      flex-basis: 60%;
+    }
   }
 
   .thumbnails-container {
     display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+
+    @include lg {
+      gap: 2.5rem;
+      justify-content: flex-start;
+      flex-direction: column;
+    }
   }
 
   .thumbnail {
@@ -51,6 +66,7 @@
   }
 
   .brand {
+    margin-top: 2.5rem;
     font-weight: 600;
     font-size: 1.875rem;
     font-size: 1.875rem;
