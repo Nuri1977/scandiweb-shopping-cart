@@ -6,6 +6,7 @@ import { createStructuredSelector } from "reselect";
 import { withNavigation, withParams } from "../../HOC";
 import { fetchProductInfo } from "../../api";
 import { selectCurrentCurrency } from "../../redux/currency.reducer";
+import { addItemToCart } from "../../redux/cart.reducer";
 
 import SpinnerComp from "../../components/spinner/Spinner";
 import "./Product.scss";
@@ -13,6 +14,7 @@ import "./Product.scss";
 import TestImage from "../../assets/test.png";
 import sanitizeHtml from "sanitize-html";
 import ProductAttribute from "../../components/productAttribute/ProductAttribute";
+
 
 class ProductPage extends React.Component {
   state = {
@@ -45,7 +47,7 @@ class ProductPage extends React.Component {
 
     if (isLoading) return <SpinnerComp />;
     else if (product) {
-      const { currentCurrency } = this.props;
+      const { currentCurrency, addItemToCart } = this.props;
       const { selectedImage } = this.state;
       const {
         id,
@@ -67,6 +69,12 @@ class ProductPage extends React.Component {
       const handleSubmit = (e) => {
         e.preventDefault();
         if (!inStock) return;
+        let formData = {};
+        new FormData(e.target).forEach((value, key) => {
+          formData[key] = value;
+        });
+        console.log(formData);
+        addItemToCart(formData);
       };
 
       return (
@@ -95,7 +103,8 @@ class ProductPage extends React.Component {
             <img src={TestImage} alt="" className="full-image" />
           </div>
           <div className="info">
-          <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit}>
+              <input type="hidden" value={id} name="id" />
               <h2 className="brand">{brand}</h2>
               <h1 className="name">{name}</h1>
               {attributes.map((item) => (
@@ -128,6 +137,10 @@ class ProductPage extends React.Component {
   }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+  addItemToCart: (product) => dispatch(addItemToCart(product)),
+});
+
 const mapStateToProps = createStructuredSelector({
   currentCurrency: selectCurrentCurrency,
 });
@@ -135,5 +148,5 @@ const mapStateToProps = createStructuredSelector({
 export default compose(
   withNavigation,
   withParams,
-  connect(mapStateToProps)
+  connect(mapStateToProps, mapDispatchToProps)
 )(ProductPage);

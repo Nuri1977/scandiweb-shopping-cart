@@ -6,6 +6,7 @@ import {
   selectIsCartMenuOpen,
   toggleCartMenu,
   dismissCartMenu,
+  selectCartItemsTotal,
 } from "../../redux/cart.reducer";
 
 import {
@@ -47,7 +48,7 @@ class Header extends React.Component {
   render() {
     const { isCurrencyMenuOpen, toggleCurrencyMenu, dismissCurrencyMenu } =
       this.props;
-    const { isCartMenuOpen, toggleCartMenu, dismissCartMenu } = this.props;
+    const { isCartMenuOpen, toggleCartMenu, dismissCartMenu, cartItemsTotal } = this.props;
 
     const handleOnClickCurrencyIcon = (e) => {
       e.preventDefault();
@@ -87,7 +88,14 @@ class Header extends React.Component {
             <ArrowSVG />
           </div>
           <div className="cart-icon" onClick={handleOnClickCartIcon}>
-            <CartSVG />
+            <div className="cart-icon__inner">
+              <CartSVG />
+              {cartItemsTotal > 0 ? (
+                <span className="cart-icon__label">
+                  {cartItemsTotal > 9 ? "+9" : cartItemsTotal}
+                </span>
+              ) : null}
+            </div>
           </div>
         </div>
         {isCurrencyMenuOpen ? <CurrencyMenu /> : null}
@@ -101,6 +109,7 @@ const mapStateToProps = createStructuredSelector({
   isCartMenuOpen: selectIsCartMenuOpen,
   categoryNames: selectCategoryNames,
   currentCurrency: selectCurrentCurrency,
+  cartItemsTotal: selectCartItemsTotal,
 });
 
 const mapDispatchToProps = (dispatch) => ({

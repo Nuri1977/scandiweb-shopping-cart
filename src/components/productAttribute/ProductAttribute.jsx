@@ -12,7 +12,9 @@ class AttributeOption extends React.Component {
             type="radio"
             {...props}
             style={{ backgroundColor: value }}
+            value={value}
             className="swatch"
+            required
           />
           <label htmlFor={props.id} aria-label={label} />
         </div>
@@ -20,7 +22,7 @@ class AttributeOption extends React.Component {
     else
       return (
         <div className="product-attribute__option">
-          <input type="radio" {...props} />
+          <input type="radio" {...props} value={value} required />
           <label htmlFor={props.id}>{label}</label>
         </div>
       );
