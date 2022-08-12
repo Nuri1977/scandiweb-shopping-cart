@@ -5,7 +5,6 @@ import { fetchCurrencyOptions } from "../api";
 // === INITIAL STATE ===
 
 const initialState = {
-  isCurrencyMenuOpen: false,
   currentCurrency: {
     label: "USD",
     symbol: "$",
@@ -20,12 +19,6 @@ const currencySlice = createSlice({
   name: "currency",
   initialState,
   reducers: {
-    toggleCurrencyMenu: (state) => {
-      state.isCurrencyMenuOpen = !state.isCurrencyMenuOpen;
-    },
-    dismissCurrencyMenu: (state) => {
-      state.isCurrencyMenuOpen = false;
-    },
     setCurrentCurrency: (state, { payload }) => {
       state.currentCurrency = payload;
     },
@@ -36,8 +29,6 @@ const currencySlice = createSlice({
 });
 
 export const {
-  toggleCurrencyMenu,
-  dismissCurrencyMenu,
   setCurrencyOptions,
   setCurrentCurrency,
 } = currencySlice.actions;
@@ -46,13 +37,13 @@ export const {
 // === SELECTORS ===
 
 const selectCurrencyStore = (state) => state.currency;
-export const selectIsCurrencyMenuOpen = createSelector(
-  [selectCurrencyStore],
-  (currency) => currency.isCurrencyMenuOpen
-);
 export const selectCurrentCurrency = createSelector(
   [selectCurrencyStore],
   (currency) => currency.currentCurrency
+);
+export const selectCurrentCurrencySymbol = createSelector(
+  [selectCurrentCurrency],
+  (currency) => currency.symbol
 );
 export const selectCurrencyOptions = createSelector(
   [selectCurrencyStore],

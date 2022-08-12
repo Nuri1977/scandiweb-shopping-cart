@@ -1,33 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-
+import { selectCartItemsTotal } from "../../redux/cart.reducer";
+import { selectCurrentCurrency } from "../../redux/currency.reducer";
+import { getCategoryNamesAsync, selectCategoryNames } from "../../redux/shop.reducer";
 import {
   selectIsCartMenuOpen,
   toggleCartMenu,
   dismissCartMenu,
-  selectCartItemsTotal,
-} from "../../redux/cart.reducer";
-
-import {
   selectIsCurrencyMenuOpen,
   toggleCurrencyMenu,
   dismissCurrencyMenu,
-  selectCurrentCurrency,
-} from "../../redux/currency.reducer";
-
-import {
-  getCategoryNamesAsync,
-  selectCategoryNames,
-} from "../../redux/shop.reducer";
-
+} from "../../redux/ui.reducer";
 import CurrencyMenu from "../currencyMenu/CurrencyMenu";
 import CustomLink from "../customLink/CustomLink";
-
 import { ReactComponent as CartSVG } from "../../assets/empty-cart.svg";
 import { ReactComponent as LogoSVG } from "../../assets/logo.svg";
 import { ReactComponent as ArrowSVG } from "../../assets/down-arrow.svg";
-
 import "./Header.scss";
 
 class Header extends React.Component {
