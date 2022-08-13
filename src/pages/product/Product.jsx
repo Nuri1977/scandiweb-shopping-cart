@@ -2,15 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "@reduxjs/toolkit";
 import { createStructuredSelector } from "reselect";
-
 import { withNavigation, withParams } from "../../HOC";
 import { fetchProductInfo } from "../../api";
-import { selectCurrentCurrency } from "../../redux/currency.reducer";
+import { selectProductPrice } from "../../redux/currency.reducer";
 import { addItemToCart } from "../../redux/cart.reducer";
-
 import SpinnerComp from "../../components/spinner/Spinner";
 import "./Product.scss";
-
 import TestImage from "../../assets/test.png";
 import sanitizeHtml from "sanitize-html";
 import ProductAttribute from "../../components/productAttribute/ProductAttribute";
@@ -47,7 +44,7 @@ class ProductPage extends React.Component {
 
     if (isLoading) return <SpinnerComp />;
     else if (product) {
-      const { currentCurrency, addItemToCart } = this.props;
+      const { addItemToCart, getProductPrice } = this.props;
       const { selectedImage } = this.state;
       const {
         id,
@@ -60,9 +57,7 @@ class ProductPage extends React.Component {
         inStock,
       } = product;
 
-      const price = prices.find(
-        (p) => p.currency.label === currentCurrency.label
-      );
+      const price = getProductPrice(prices);
 
       const safeDescription = sanitizeHtml(description);
 
@@ -117,8 +112,7 @@ class ProductPage extends React.Component {
               <div className="price">
                 <span className="price-title">price:</span>
                 <span className="price-value">
-                  {price.currency.symbol}
-                  {price.amount}
+                  {price}
                 </span>
               </div>
 
@@ -142,7 +136,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = createStructuredSelector({
-  currentCurrency: selectCurrentCurrency,
+  getProductPrice: (prices) => selectProductPrice(prices),
 });
 
 export default compose(
