@@ -7,13 +7,22 @@ import {
   selectCurrentCurrency,
   setCurrentCurrency,
 } from "../../redux/currency.reducer";
-
+import { dismissCurrencyMenu } from "../../redux/ui.reducer";
 import "./CurrencyMenu.scss";
 
 class CurrencyMenu extends React.Component {
+  dismissMenuHandler = () => {
+    this.props.dismissMenu();
+  };
+
   componentDidMount() {
+    window.addEventListener("click", this.dismissMenuHandler);
     const { getCurrencyOptions } = this.props;
     getCurrencyOptions();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("click", this.dismissMenuHandler);
   }
 
   render() {
@@ -51,6 +60,7 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  dismissMenu: () => dispatch(dismissCurrencyMenu()),
   getCurrencyOptions: () => dispatch(getCurrencyOptionsAsync()),
   setCurrentCurrency: (currency) => dispatch(setCurrentCurrency(currency)),
 });

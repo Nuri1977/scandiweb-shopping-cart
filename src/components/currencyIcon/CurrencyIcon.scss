@@ -1,0 +1,32 @@
+@import "../../variables.scss";
+
+header .currency-icon {
+  height: 100%;
+  padding-right: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  cursor: pointer;
+  user-select: none;
+  transition: $transition;
+
+  span {
+    font-weight: 500;
+    font-size: 1.125rem;
+  }
+
+  &:hover {
+    filter: $filter-to-c-primary;
+  }
+
+  svg {
+    transition: $transition;
+  }
+
+  &.active {
+    filter: $filter-to-c-primary;
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+}
