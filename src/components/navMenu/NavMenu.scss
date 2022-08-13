@@ -1,0 +1,30 @@
+@import "../../variables.scss";
+
+header .nav-menu {
+  float: left;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  a {
+    font-weight: 400;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.25rem 1rem 0;
+    height: 100%;
+    cursor: pointer;
+    color: $c-text;
+    border-bottom: 2px solid transparent;
+    transition: $transition;
+
+    &:hover {
+      color: $c-primary;
+    }
+
+    &.active {
+      color: $c-primary;
+      font-weight: 600;
+      border-color: $c-primary;
+    }
+  }
+}
