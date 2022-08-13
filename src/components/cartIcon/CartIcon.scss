@@ -1,0 +1,51 @@
+@import "../../variables.scss";
+
+header .cart-icon {
+  margin-right: 1rem;
+  padding-left: 0.75rem;
+  cursor: pointer;
+
+  @include sm {
+    margin-right: 0;
+  }
+
+  .inner {
+    position: relative;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+    svg {
+      align-self: center;
+      transition: $transition;
+    }
+  }
+
+  .label {
+    position: absolute;
+    width: 1.25rem;
+    height: 1.25rem;
+    text-align: center;
+    align-self: center;
+    transform: translate(13px, -8px);
+    padding-top: 0.3rem;
+    font-weight: 700;
+    font-size: 0.875rem;
+    line-height: 0.5rem;
+    border-radius: 100%;
+    background-color: $c-black;
+    color: $c-white;
+    transition: $transition;
+  }
+
+  &:hover,
+  &.active {
+    svg {
+      filter: $filter-to-c-primary;
+    }
+    .label {
+      color: white;
+      background-color: $c-primary;
+    }
+  }
+}

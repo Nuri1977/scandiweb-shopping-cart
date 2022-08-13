@@ -1,20 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCartItemsTotal } from "../../redux/cart.reducer";
 import { selectCurrentCurrency } from "../../redux/currency.reducer";
 import { getCategoryNamesAsync, selectCategoryNames } from "../../redux/shop.reducer";
 import {
   selectIsCartMenuOpen,
-  toggleCartMenu,
-  dismissCartMenu,
   selectIsCurrencyMenuOpen,
   toggleCurrencyMenu,
   dismissCurrencyMenu,
 } from "../../redux/ui.reducer";
+import CartIcon from "../cartIcon/CartIcon";
 import CurrencyMenu from "../currencyMenu/CurrencyMenu";
 import CustomLink from "../customLink/CustomLink";
-import { ReactComponent as CartSVG } from "../../assets/empty-cart.svg";
 import { ReactComponent as LogoSVG } from "../../assets/logo.svg";
 import { ReactComponent as ArrowSVG } from "../../assets/down-arrow.svg";
 import "./Header.scss";
@@ -22,7 +19,6 @@ import "./Header.scss";
 class Header extends React.Component {
   dismissAllMenus = () => {
     if (this.props.isCurrencyMenuOpen) this.props.dismissCurrencyMenu();
-    if (this.props.isCartMenuOpen) this.props.dismissCartMenu();
   };
 
   componentDidMount() {
@@ -35,22 +31,15 @@ class Header extends React.Component {
   }
 
   render() {
-    const { isCurrencyMenuOpen, toggleCurrencyMenu, dismissCurrencyMenu } =
+    const { isCurrencyMenuOpen, toggleCurrencyMenu } =
       this.props;
-    const { isCartMenuOpen, toggleCartMenu, dismissCartMenu, cartItemsTotal } = this.props;
+    const { isCartMenuOpen, dismissCartMenu} = this.props;
 
     const handleOnClickCurrencyIcon = (e) => {
       e.preventDefault();
       e.stopPropagation();
       if (isCartMenuOpen) dismissCartMenu();
       toggleCurrencyMenu();
-    };
-
-    const handleOnClickCartIcon = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (isCurrencyMenuOpen) dismissCurrencyMenu();
-      toggleCartMenu();
     };
 
     const { categoryNames, currentCurrency } = this.props;
@@ -76,16 +65,7 @@ class Header extends React.Component {
           <span>{currentCurrency.symbol}</span>
             <ArrowSVG />
           </div>
-          <div className="cart-icon" onClick={handleOnClickCartIcon}>
-            <div className="cart-icon__inner">
-              <CartSVG />
-              {cartItemsTotal > 0 ? (
-                <span className="cart-icon__label">
-                  {cartItemsTotal > 9 ? "+9" : cartItemsTotal}
-                </span>
-              ) : null}
-            </div>
-          </div>
+          <CartIcon />
         </div>
         {isCurrencyMenuOpen ? <CurrencyMenu /> : null}
       </header>
@@ -98,12 +78,9 @@ const mapStateToProps = createStructuredSelector({
   isCartMenuOpen: selectIsCartMenuOpen,
   categoryNames: selectCategoryNames,
   currentCurrency: selectCurrentCurrency,
-  cartItemsTotal: selectCartItemsTotal,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleCartMenu: () => dispatch(toggleCartMenu()),
-  dismissCartMenu: () => dispatch(dismissCartMenu()),
   toggleCurrencyMenu: () => dispatch(toggleCurrencyMenu()),
   dismissCurrencyMenu: () => dispatch(dismissCurrencyMenu()),
   getCategoryNames: () => dispatch(getCategoryNamesAsync()),
