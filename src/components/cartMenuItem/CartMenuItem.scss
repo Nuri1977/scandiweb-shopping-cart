@@ -1,17 +1,9 @@
 @import "../../variables.scss";
 
-.cart-menu-item {
+.cart-menu-item__left {
   min-height: 8.5625rem;
   display: grid;
   grid-template-columns: 50% auto 35%;
-}
-
-.cart-menu-item__left {
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-
-  justify-content: space-between;
 }
 
 .cart-menu-item__info {
@@ -87,3 +79,4 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+

@@ -63,7 +63,7 @@ export const selectCartItemsTotalPrice = createSelector(
           item.quantity,
       0
     );
-    return formatPrice(total, currency);
+    return `${currency.symbol}${formatPrice(total, currency)}`;
   }
 );
 

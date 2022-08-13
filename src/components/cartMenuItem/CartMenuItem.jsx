@@ -36,7 +36,7 @@ class CartMenuItem extends React.Component {
 
     return (
       <div className="cart-menu-item__left">
-          <div className="cart-menu-item__info">
+        <div className="cart-menu-item__info">
           <div>
             <h2 className="cart-menu-item__info__brand">{brand}</h2>
             <h1 className="cart-menu-item__info__name">{name}</h1>

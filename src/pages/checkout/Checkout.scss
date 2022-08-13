@@ -1,0 +1,135 @@
+@import "../../variables.scss";
+
+$button-size: 2.8125rem;
+$item-padding: 1.25rem;
+$item-height: 11.625rem;
+
+#checkout-page {
+  margin-top: 5rem;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-page__title {
+  text-transform: uppercase;
+  color: $c-text;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.checkout-page__no-items {
+  margin-top: 3.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  a {
+    width: fit-content;
+    text-align: center;
+    text-transform: uppercase;
+    line-height: 1rem;
+    padding: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    background-color: $c-primary;
+    border: 1px solid $c-primary;
+    color: $c-white;
+    transition: $transition;
+
+    &:hover {
+      border-color: $c-black;
+      background-color: transparent;
+      color: $c-text;
+    }
+  }
+}
+
+.checkout-page__cart-items-container {
+  margin-top: 3.75rem;
+  margin-bottom: 1rem;
+
+  .cart-menu-item__left {
+    $item-border: 1px solid #e5e5e5;
+    grid-template-columns: auto $button-size 8.8125rem;
+    gap: 0.75rem;
+    border-top: $item-border;
+    padding-top: $item-padding;
+    padding-bottom: $item-padding;
+    min-height: calc($item-height + (2 * $item-padding));
+
+    &:last-child {
+      border-bottom: $item-border;
+    }
+  }
+
+  .cart-menu-item__info__brand,
+  .cart-menu-item__info__name {
+    font-size: 1.875rem;
+    line-height: 1.75rem;
+  }
+
+  .cart-menu-item__info__brand {
+    font-weight: 600;
+  }
+
+  .cart-menu-item__info__name {
+    margin-top: 1rem;
+    font-weight: 400;
+  }
+
+  .cart-menu-item__info__price {
+    margin-top: 1.4rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+  }
+
+  .cart-menu-item__attributes {
+    gap: 0.75rem;
+  }
+
+  .cart-menu-item__attribute {
+    min-width: 3.9375rem;
+    height: $button-size;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1rem;
+    padding: 0.7rem;
+    color: $c-black;
+    background-color: $c-black;
+
+    &.cart-menu-item__attribute__no {
+      color: $c-text;
+      background-color: #c0c0c0;
+    }
+  }
+
+  .cart-menu-item__quantity {
+    width: $button-size;
+  }
+
+  .cart-menu-item__quantity__value {
+    font-weight: 500;
+    font-size: 1.5rem;
+  }
+
+  .cart-menu-item__quantity__button {
+    height: $button-size;
+    width: $button-size;
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .cart-items__total {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+}
