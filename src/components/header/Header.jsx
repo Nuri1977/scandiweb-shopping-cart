@@ -17,7 +17,7 @@ class Header extends React.Component {
       <>
         {isCartMenuOpen ? <div id="overlay" /> : null}
           <header>
-          <div className="header__navbar">
+          <div className="header__navbar" id="page-container">
             <NavMenu />
             <div className="header__logo">
               <LogoSVG />

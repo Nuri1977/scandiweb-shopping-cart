@@ -22,14 +22,15 @@ class App extends React.Component {
     const { categoryNames, isLoading, errorMsg } = this.props;
 
     return (
-      <div id="page-container">
+      <div>
         <Header />
-        {/* TODO: create error boundary */}
-        {!isLoading && !errorMsg && categoryNames ? (
-          <Suspense fallback={<Spinner />}>
-            <AppRoutes categoryNames={categoryNames} />
-          </Suspense>
-        ) : null}
+        <main id="page-container">
+          {!isLoading && !errorMsg && categoryNames ? (
+            <Suspense fallback={<Spinner />}>
+              <AppRoutes categoryNames={categoryNames} />
+            </Suspense>
+          ) : null}
+        </main>
       </div>
     );
   }
