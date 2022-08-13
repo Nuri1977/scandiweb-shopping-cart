@@ -64,59 +64,64 @@ class ProductPage extends React.Component {
       const handleSubmit = (e) => {
         e.preventDefault();
         if (!inStock) return;
-        let formData = {};
-        new FormData(e.target).forEach((value, key) => {
-          formData[key] = value;
+        let cartItem = {
+          productId: id,
+          selectedAttributes: {},
+          brand,
+          name,
+          gallery,
+          attributes,
+          prices,
+        };
+        const formData = new FormData(e.target);
+        formData.forEach((value, key) => {
+          cartItem.selectedAttributes[key] = value;
         });
-        console.log(formData);
-        addItemToCart(formData);
+        console.log(cartItem);
+        addItemToCart(cartItem);
       };
 
       return (
         <div id="product-page">
-          <div className="images">
-            <div className="thumbnails-container">
+          <div className="product-page__images">
+            <div className="product-page__thumbnails-container">
               {gallery.map((image, idx) => (
-                // <div
-                //   className="thumbnail"
-                //   key={idx}
-                //   style={{ backgroundImage: `url('${image}')` }}
-                //   onClick={() => this.setState({ selectedImage: idx })}
-                // />
-
-                // TODO: temporary use a test image to save data, remove later
-                <div
-                  className="thumbnail"
+                // eslint-disable-next-line jsx-a11y/alt-text
+                <img
+                  className="product-page__thumbnail"
                   key={idx}
-                  style={{ backgroundImage: `url('${TestImage}')` }}
                   onClick={() => this.setState({ selectedImage: idx })}
+                  src={TestImage}
                 />
               ))}
             </div>
-            {/* <img src={gallery[selectedImage]} alt="" className="full-image" /> */}
-            {/* // TODO: temporary use a test image to save data, remove later */}
-            <img src={TestImage} alt="" className="full-image" />
+            <img src={TestImage} alt="" className="product-page__full-image" />
           </div>
-          <div className="info">
+          <div className="product-page__info">
             <form onSubmit={handleSubmit}>
-              <input type="hidden" value={id} name="id" />
-              <h2 className="brand">{brand}</h2>
-              <h1 className="name">{name}</h1>
-              {attributes.map((item) => (
-                <ProductAttribute
-                  attribute={item}
-                  productId={id}
-                  key={item.id}
-                />
-              ))}
-              <div className="price">
-                <span className="price-title">price:</span>
-                <span className="price-value">
+            <h2 className="product-page__info__brand">{brand}</h2>
+              <h1 className="product-page__info__name">{name}</h1>
+              <div className="product-page__info__attributes">
+                {attributes.map((item) => (
+                  <ProductAttribute
+                    attribute={item}
+                    productId={id}
+                    key={item.id}
+                  />
+                ))}
+              </div>
+              <div className="product-page__info__price">
+                <span className="product-page__info__price__title">price:</span>
+                <span className="product-page__info__price__value">
                   {price}
                 </span>
               </div>
 
-              <button className="add-to-cart" type="submit" disabled={!inStock}>
+              <button
+                className="product-page__info__add-to-cart"
+                type="submit"
+                disabled={!inStock}
+              >
                 {inStock ? "add to cart" : "out of stock"}
               </button>
             </form>
@@ -132,7 +137,7 @@ class ProductPage extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  addItemToCart: (product) => dispatch(addItemToCart(product)),
+  addItemToCart: (item) => dispatch(addItemToCart({ item })),
 });
 
 const mapStateToProps = createStructuredSelector({

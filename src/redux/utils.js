@@ -1,3 +1,5 @@
+import { isEqual, findIndex, findLastIndex, transform } from "lodash";
+
 const CURRENCY_FORMATS = {
   USD: "en-US",
   GBP: "en-UK",
@@ -11,3 +13,11 @@ export const formatPrice = (number, currency) =>
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(number);
+
+export const isCartItemEqual = (a, b) =>
+  a.id === b.id && isEqual(a.selectedAttributes, b.selectedAttributes);
+
+export const findCartItemIdx = (list, item, fromStart = true) =>
+  fromStart
+    ? findIndex(list, (listItem) => isCartItemEqual(listItem, item))
+    : findLastIndex(list, (listItem) => isCartItemEqual(listItem, item));
