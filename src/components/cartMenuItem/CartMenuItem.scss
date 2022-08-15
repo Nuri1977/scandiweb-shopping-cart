@@ -4,6 +4,7 @@
   min-height: 8.5625rem;
   display: grid;
   grid-template-columns: 50% auto 35%;
+  padding: 8px 0;
 }
 
 .cart-menu-item__info {
@@ -74,9 +75,17 @@
   }
 }
 
-.cart-item__thumbnail {
+.cart-menu-item__thumbnail {
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
 
+.cart-items__total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
