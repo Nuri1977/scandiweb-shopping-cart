@@ -8,7 +8,7 @@ export class Checkout extends Component {
     return (
       <div id="checkout-page">
         <h1 className="checkout-page__title">cart</h1>
-        <CartMenuContainer className="checkout-page__cart-items-container">
+        <CartMenuContainer className="checkout-page__cart-items-container" displayThumbnailArrows>
           <div className="checkout-page__no-items">
             <span>There are no Items in your bag</span>
             <Link to="/">explore our products</Link>
