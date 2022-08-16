@@ -8,7 +8,6 @@ import { selectProductPrice } from "../../redux/currency.reducer";
 import { addItemToCart } from "../../redux/cart.reducer";
 import SpinnerComp from "../../components/spinner/Spinner";
 import "./Product.scss";
-import TestImage from "../../assets/test.png";
 import sanitizeHtml from "sanitize-html";
 import ProductAttribute from "../../components/productAttribute/ProductAttribute";
 
