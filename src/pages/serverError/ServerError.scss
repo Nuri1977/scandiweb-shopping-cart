@@ -1,0 +1,22 @@
+#internal-server-error {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 40rem;
+  margin: 5rem auto;
+
+  .image {
+    height: 50vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    margin-top: 1rem;
+  }
+}
