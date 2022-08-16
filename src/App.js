@@ -4,12 +4,13 @@ import { createStructuredSelector } from "reselect";
 import "./App.scss";
 import Spinner from "./components/spinner/Spinner";
 import Header from "./components/header/Header";
+import ServerError from "./pages/serverError/ServerError";
 import AppRoutes from "./routes";
 
 import {
   getCategoryNamesAsync,
   selectCategoryNames,
-  selectErrorMsg,
+  selectHasNetworkError,
   selectIsLoading,
 } from "./redux/shop.reducer";
 
@@ -19,19 +20,25 @@ class App extends React.Component {
   }
 
   render() {
-    const { categoryNames, isLoading, errorMsg } = this.props;
+    const { categoryNames, isLoading, hasNetworkError} = this.props;
 
     return (
-      <div>
-        <Header />
-        <main id="page-container">
-          {!isLoading && !errorMsg && categoryNames ? (
-            <Suspense fallback={<Spinner />}>
-              <AppRoutes categoryNames={categoryNames} />
-            </Suspense>
-          ) : null}
-        </main>
-      </div>
+      <>
+        {isLoading ? (
+          <Spinner />
+        ) : hasNetworkError ? (
+          <ServerError />
+        ) : (
+          <>
+            <Header />
+            <main id="page-container">
+              <Suspense fallback={<Spinner />}>
+                <AppRoutes categoryNames={categoryNames} />
+              </Suspense>
+            </main>
+          </>
+        )}
+      </>
     );
   }
 }
@@ -39,7 +46,7 @@ class App extends React.Component {
 const mapStateToProps = createStructuredSelector({
   categoryNames: selectCategoryNames,
   isLoading: selectIsLoading,
-  errorMsg: selectErrorMsg,
+  hasNetworkError: selectHasNetworkError,
 });
 
 const mapDispatchToProps = (dispatch) => ({

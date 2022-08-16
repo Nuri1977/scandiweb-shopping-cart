@@ -8,7 +8,7 @@ import { fetchCategoryNames, fetchCategoryProducts } from "../api";
 
 const initialState = {
   isLoading: true,
-  errorMsg: null,
+  hasNetworkError: false,
   categoryNames: null,
   products: {},
 };
@@ -29,8 +29,8 @@ const shopSlice = createSlice({
     setIsLoading: (state, { payload }) => {
       state.isLoading = payload;
     },
-    setErrorMsg: (state, { payload }) => {
-      state.errorMsg = payload;
+    setHasNetworkError: (state, { payload }) => {
+      state.hasNetworkError = payload;
     },
   },
 });
@@ -39,7 +39,7 @@ export const {
   setCategoryNames,
   setCategoryProducts,
   setIsLoading,
-  setErrorMsg,
+  setHasNetworkError,
 } = shopSlice.actions;
 
 // =================
@@ -54,9 +54,9 @@ export const selectIsLoading = createSelector(
   [selectShopStore],
   (shop) => shop.isLoading
 );
-export const selectErrorMsg = createSelector(
+export const selectHasNetworkError = createSelector(
   [selectShopStore],
-  (shop) => shop.errorMsg
+  (shop) => shop.hasNetworkError
 );
 export const selectProducts = createSelector(
   [selectShopStore],
@@ -81,16 +81,20 @@ export const getCategoryNamesAsync = () => {
       .then((res) => {
         dispatch(setCategoryNames(res));
       })
-      .catch((err) => dispatch(setErrorMsg(err.toString())))
+      .catch((_err) => dispatch(setHasNetworkError(true)))
       .finally(() => dispatch(setIsLoading(false)));
   };
 };
 
 export const getCategoryProductsAsync = (categoryName) => {
   return (dispatch) => {
-    fetchCategoryProducts(categoryName).then((products) => {
-      dispatch(setCategoryProducts({ categoryName, products }));
-    });
+    dispatch(setIsLoading(true));
+    fetchCategoryProducts(categoryName)
+      .then((products) => {
+        dispatch(setCategoryProducts({ categoryName, products }));
+      })
+      .catch((_err) => dispatch(setHasNetworkError(true)))
+      .finally(() => dispatch(setIsLoading(false)));
   };
 };
 

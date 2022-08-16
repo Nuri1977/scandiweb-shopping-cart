@@ -20,22 +20,27 @@ class ProductPage extends React.Component {
   };
 
   componentDidMount() {
+    window.scrollTo(0, 0);
     const productId = this.props.params.productId;
+    const navigate = this.props.navigate
 
     this.setState({ isLoading: true });
     fetchProductInfo(productId)
-      .then(({ data: { product } }) => {
-        if (!product) {
-          this.props.navigate("/404");
+      .then(({ data: { product }, error }) => {
+        if (error) {
+          navigate("/500");
+          return;
+        } else if (!product) {
+          navigate("/404");
           return;
         }
         this.setState({ product });
         this.setState({ isLoading: false });
-      })
+        })
       .catch((error) => {
         console.log(JSON.stringify(error));
         this.props.navigate("/500");
-      });
+    });
   }
 
   render() {
