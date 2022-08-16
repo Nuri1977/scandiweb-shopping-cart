@@ -86,7 +86,7 @@ class CartMenuItem extends React.Component {
         </div>
         <div
           className="cart-menu-item__thumbnail"
-          style={{ backgroundImage: `url('${TestImage}')` }}
+          style={{ backgroundImage: `url('${gallery[this.state.selectedImageIdx]}')` }}
         >
           {displayThumbnailArrows && gallery.length > 1 ? (
             <>

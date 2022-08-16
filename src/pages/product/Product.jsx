@@ -91,11 +91,11 @@ class ProductPage extends React.Component {
                   className="product-page__thumbnail"
                   key={idx}
                   onClick={() => this.setState({ selectedImage: idx })}
-                  src={TestImage}
+                  src={image}
                 />
               ))}
             </div>
-            <img src={TestImage} alt="" className="product-page__full-image" />
+            <img src={gallery[0]} alt="" className="product-page__full-image" />
           </div>
           <div className="product-page__info">
             <form onSubmit={handleSubmit}>

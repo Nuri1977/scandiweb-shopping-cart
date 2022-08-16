@@ -32,7 +32,7 @@ class CategoryItem extends React.Component {
           {/* @@ temporary using a static test image */}
           <div
             className="image"
-            style={{ backgroundImage: `url('${TestImage}')` }}
+            style={{ backgroundImage: `url('${gallery[0]}')` }}
           />
           {inStock ? (
             <CartSVG className="cart-icon" />
